@@ -1,2 +1,2 @@
-# fusenet
+# Fusenet
 The Future of Usenet
