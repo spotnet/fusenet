@@ -671,25 +671,24 @@ namespace Phuse
 
         private void Fail(int iCode, string sError, string sLog = "")
         {
-            if (cCommand != null)
-            {
-                if (cCommand.Status != WorkStatus.Failed)
-                {
-                    if (iCode <= 0) { iCode = 983; }
-                    if (sError == null) { sError = ""; }
-                    if (sError.Length == 0) { sError = "Unknown"; }
+            LastGroup = null;
 
-                    cCommand.Data = null;
-                    cCommand.Error.Code = iCode;
-                    cCommand.Status = WorkStatus.Failed;
-                    cCommand.Error.Log = sLog + Environment.NewLine;
-                    cCommand.Error.Message = sError + " (" + Convert.ToString(cCommand.Error.Code) + ")" + Environment.NewLine;
+            if (cCommand == null) return;
+            if (cCommand.Status == WorkStatus.Failed) return;
+            
+            if (iCode <= 0) { iCode = 983; }
+            if (sError == null) { sError = ""; }
+            if (sError.Length == 0) { sError = "Unknown"; }
 
-                    VirtualEvent.Set();
+            cCommand.Data = null;
+            cCommand.Error.Code = iCode;
+            cCommand.Status = WorkStatus.Failed;
+            cCommand.Error.Log = sLog + Environment.NewLine;
+            cCommand.Error.Message = sError + " (" + Convert.ToString(cCommand.Error.Code) + ")" + Environment.NewLine;
 
-                    //Debug.WriteLine("Fail: " + sError);
-                }
-            }
+            VirtualEvent.Set();
+
+            //Debug.WriteLine("Fail: " + sError);
         }
 
         private void VirtualEvents_Closed(VirtualNNTP sender)
@@ -725,9 +724,10 @@ namespace Phuse
             {
                 case (int)NNTPCodes.GroupNotFound:
                 case (int)NNTPCodes.NoGroupSelected:
-
+                {
                     LastGroup = null;
                     break;
+                }
             }
                 
             switch (NNTPCode)
@@ -741,9 +741,12 @@ namespace Phuse
                 case (int)NNTPCodes.NoArticleSelected:
                 case (int)NNTPCodes.PostingFailed:
                 case (int)NNTPCodes.PostingNotAllowed:
-
+                {
+                    LastGroup = null;
                     Fail(NNTPCode, sLine);
+                    
                     return;
+                }
             }
 
             LastGroup = null;
