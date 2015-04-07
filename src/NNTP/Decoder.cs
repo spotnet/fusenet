@@ -86,7 +86,7 @@ namespace Fusenet.NNTP
             return new PartInfo(zBegin, zEnd);
         }
 
-        internal Core.FileInfo DecodeHeader(string sLine)
+        internal FileInfo DecodeHeader(string sLine)
         {
             int c = sLine.IndexOf("name");
 
@@ -105,7 +105,7 @@ namespace Fusenet.NNTP
             int fSize = int.Parse(sLine.Substring(b + 5, e - b - 5));
             string fName = sLine.Substring(sLine.IndexOf("name=") + 5);
 
-            return new Core.FileInfo(fName, fSize);          
+            return new FileInfo(fName, fSize);          
         }
 
         public Stream DecodeBytes(Stream Data, int Length)
