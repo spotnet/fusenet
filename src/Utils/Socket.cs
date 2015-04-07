@@ -415,7 +415,7 @@ namespace Fusenet.Utils
                 SafeFire(Connected, new WorkArgs(951, "Connected"));
 
             }
-            catch (Exception ex) { Close(955, "Server doesn't support SSL."); }
+            catch { Close(955, "Server doesn't support SSL."); }
         }
 
         public bool Receive()
