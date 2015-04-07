@@ -1,2 +1,9 @@
 # Fusenet
-The Future of Usenet
+
+Fast NNTP client in C#
+
+Features:
+
+- Nzb support
+- Par2 support
+- Live streaming
