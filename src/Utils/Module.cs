@@ -25,7 +25,6 @@ using System.Collections.Concurrent;
 
 using Fusenet.Core;
 using Fusenet.NNTP;
-using Fusenet.Utils;
 
 namespace Fusenet.Utils
 {

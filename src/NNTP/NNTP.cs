@@ -573,14 +573,14 @@ namespace Fusenet.NNTP
 
     } // <lcvVhLTkdnY>
 
-    internal class NNTP : VirtualNNTP
+    internal class cNNTP : VirtualNNTP
     {
         private string LastGroup;
         private NNTPCommands cCommand;
         private VirtualServer vServer;
         private ManualResetEventSlim VirtualEvent = new ManualResetEventSlim();
 
-        internal NNTP(VirtualServer SVR, VirtualConnection VC) : base(SVR, VC)
+        internal cNNTP(VirtualServer SVR, VirtualConnection VC) : base(SVR, VC)
         {
             vServer = SVR;
 

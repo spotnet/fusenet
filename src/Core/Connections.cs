@@ -17,10 +17,10 @@ using System.Threading.Tasks;
 //
 //-------------------------------------------------------------
 
-using Fusenet.Core;
+using Fusenet.NNTP;
 using Fusenet.Utils;
 
-namespace Fusenet.NNTP
+namespace Fusenet.Core
 {
     internal class Connections
     {
@@ -150,7 +150,7 @@ namespace Fusenet.NNTP
         private int zID;
         private int zIndex;
 
-        private NNTP zNNTP;
+        private cNNTP zNNTP;
         private Scheduler zSched;
         private VirtualServer Srv;
         private ConnectionTask zConnection;
@@ -162,7 +162,7 @@ namespace Fusenet.NNTP
         {
             Srv = cServer;
             zSched = Scheduler;
-            zNNTP = new NNTP(cServer, this);
+            zNNTP = new cNNTP(cServer, this);
 
             zConnection = new ConnectionTask();
             vIdle = new ManualResetEventSlim();
@@ -203,7 +203,7 @@ namespace Fusenet.NNTP
 
             if (zNNTP != null)
             {
-                NNTP KeepRef = zNNTP;
+                cNNTP KeepRef = zNNTP;
                 zNNTP = null;
                 KeepRef.Disconnect(998, "Cancelled", true);
                 KeepRef = null;

@@ -274,7 +274,7 @@ namespace Fusenet.API
 
     //internal class WebHandler : Phocus.Webhandler
     //{
-    //    private Fusenet.Engine Engine;
+    //    private Engine Engine;
 
     //    internal WebHandler(Engine zEngine)
     //    {
