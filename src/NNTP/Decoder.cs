@@ -13,7 +13,10 @@ using System.Diagnostics;
 //
 //-------------------------------------------------------------
 
-namespace Phuse
+using Fusenet.Core;
+using Fusenet.Utils;
+
+namespace Fusenet.NNTP
 {
     internal interface ArticleDecoder
     {
@@ -83,7 +86,7 @@ namespace Phuse
             return new PartInfo(zBegin, zEnd);
         }
 
-        internal FileInfo DecodeHeader(string sLine)
+        internal Core.FileInfo DecodeHeader(string sLine)
         {
             int c = sLine.IndexOf("name");
 
@@ -102,7 +105,7 @@ namespace Phuse
             int fSize = int.Parse(sLine.Substring(b + 5, e - b - 5));
             string fName = sLine.Substring(sLine.IndexOf("name=") + 5);
 
-            return new FileInfo(fName, fSize);          
+            return new Core.FileInfo(fName, fSize);          
         }
 
         public Stream DecodeBytes(Stream Data, int Length)

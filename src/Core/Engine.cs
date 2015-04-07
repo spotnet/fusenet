@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using Fusenet.API;
 
 //-------------------------------------------------------------
 //
@@ -19,7 +20,7 @@ using System.Collections.Specialized;
 //
 //-------------------------------------------------------------
 
-namespace Phuse
+namespace Fusenet.Core
 {
     public class Engine
     {

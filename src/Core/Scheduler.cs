@@ -4,9 +4,9 @@ using System.Xml;
 using System.Text;
 using System.Linq;
 using System.Threading;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
-using System.Diagnostics;
 
 //-------------------------------------------------------------
 //
@@ -19,15 +19,19 @@ using System.Diagnostics;
 //
 //-------------------------------------------------------------
 
-namespace Phuse
+using Fusenet.API;
+using Fusenet.NNTP;
+using Fusenet.Utils;
+
+namespace Fusenet.Core
 {
     internal class Scheduler
     {
         internal Connections Connections;
         internal Slots Slots = new Slots();
 
-        private IndexedCollection zStacks = new IndexedCollection();
-        private IndexedCollection zServers = new IndexedCollection();
+        private Utils.IndexedCollection zStacks = new Utils.IndexedCollection();
+        private Utils.IndexedCollection zServers = new Utils.IndexedCollection();
 
         internal Scheduler()
         {
@@ -40,7 +44,7 @@ namespace Phuse
         }
 
         public int Count { get { return zServers.Count; } }
-        private IndexedCollection Servers { get { return zServers; } }
+        private Utils.IndexedCollection Servers { get { return zServers; } }
         //internal List<string> ListSID() { return zServers.SIDList(-1); }
         private bool SlotExist(int SlotID) { return (Slots.ContainsKey(SlotID)); }
         private bool StackExist(int ServerID) { return zStacks.ContainsKey(ServerID); }
@@ -88,7 +92,7 @@ namespace Phuse
         //    return Remove(zServers.GetID(ServerSID));
         //}
 
-        internal IndexedCollection Stack(int ServerID, int SlotID)
+        internal Utils.IndexedCollection Stack(int ServerID, int SlotID)
         {
             if (!SlotExist(SlotID)) { return null; }
             if (Servers.Item(ServerID) == null) { return null; }
@@ -109,9 +113,9 @@ namespace Phuse
             return true;
         }
 
-        internal IndexedCollection SwitchStack(int SlotID, VirtualConnection vConnection)
+        internal Utils.IndexedCollection SwitchStack(int SlotID, VirtualConnection vConnection)
         {
-            IndexedCollection iStack = null;
+            Utils.IndexedCollection iStack = null;
             List<int> AvailableStacks = null;
 
             while(true)
@@ -218,16 +222,16 @@ namespace Phuse
             }
         }
 
-        private List<IndexedCollection> WaitingStacks(int ServerID)
+        private List<Utils.IndexedCollection> WaitingStacks(int ServerID)
         {
-            List<IndexedCollection> cList = new List<IndexedCollection>();
+            List<Utils.IndexedCollection> cList = new List<Utils.IndexedCollection>();
 
             if (!StackExist(ServerID)) { return cList; }
             if (!ServerActive(ServerID)) { return cList; }
 
             foreach (VirtualSlot vSlot in RandomSlots())
             {
-                IndexedCollection tStack = Stack(ServerID, vSlot.ID);
+                Utils.IndexedCollection tStack = Stack(ServerID, vSlot.ID);
                 if ((tStack != null) && (!tStack.IsEmpty)) { cList.Add(tStack); }
             }
 
@@ -243,7 +247,7 @@ namespace Phuse
 
             while (iList.Count > 0) 
             {
-                int RandomID = iList[Module.Random.Next(0, iList.Count - 1)];
+                int RandomID = iList[Utils.Common.Random.Next(0, iList.Count - 1)];
 
                 VirtualSlot vSlot = Slots.Item(RandomID);
 
@@ -299,7 +303,7 @@ namespace Phuse
             get 
             {
                 StringBuilder sX = new StringBuilder();
-                XmlWriter xR = Module.CreateWriter(sX);
+                XmlWriter xR = Common.CreateWriter(sX);
 
                 if (!(WriteXML(xR))) { return ""; }
 
@@ -373,29 +377,29 @@ namespace Phuse
 
         private string lDebug
         {
-            get { return Module.ReadLog(DebugLog, 500); }
+            get { return Common.ReadLog(DebugLog, 500); }
         }
 
         private string lStatus
         {
-            get { return Module.ReadLog(StatusLog, 500); }
+            get { return Common.ReadLog(StatusLog, 500); }
         }
 
         internal void WriteDebug(string sCode, string sMsg)
         {
             //Debug.WriteLine("Debug: " + sMsg);
-            DebugLog.Enqueue(Module.MakeMsg(sCode, sMsg));
+            DebugLog.Enqueue(Common.MakeMsg(sCode, sMsg));
         }
 
         internal void WriteStatus(string sMsg)
         {
             //Debug.WriteLine("Status: " + sMsg);
-            StatusLog.Enqueue(Module.MakeMsg("000", sMsg));
+            StatusLog.Enqueue(Common.MakeMsg("000", sMsg));
         }
 
         internal void LogError(int CommandID, NNTPError zErr)
         {
-            WriteStatus("Command #" + Convert.ToString(CommandID) + " - Error " + Module.MakeErr(zErr));
+            WriteStatus("Command #" + Convert.ToString(CommandID) + " - Error " + Common.MakeErr(zErr));
         }
 
         internal bool WriteXML(XmlWriter xR)

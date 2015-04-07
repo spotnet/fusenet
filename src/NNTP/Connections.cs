@@ -17,7 +17,10 @@ using System.Threading.Tasks;
 //
 //-------------------------------------------------------------
 
-namespace Phuse
+using Fusenet.Core;
+using Fusenet.Utils;
+
+namespace Fusenet.NNTP
 {
     internal class Connections
     {
@@ -142,7 +145,7 @@ namespace Phuse
 
     } // <7P-BHcV0_SQ>
 
-    internal class VirtualConnection : IndexedObject 
+    internal class VirtualConnection : Utils.IndexedObject 
     {
         private int zID;
         private int zIndex;
@@ -245,7 +248,7 @@ namespace Phuse
 
         internal void LogError(int CommandID, NNTPError zErr)
         {
-            Srv.WriteStatus("Command #" + Convert.ToString(CommandID) + " - Error " + Module.MakeErr(zErr));
+            Srv.WriteStatus("Command #" + Convert.ToString(CommandID) + " - Error " + Common.MakeErr(zErr));
         }
 
     }
