@@ -4,7 +4,8 @@ Fast NNTP client in C#
 
 Features:
 
-- Nzb support
 - Par2 repair
+- Multi-server
+- NZB format support
 - Live media streaming
 - SABnzbd API compatible 
