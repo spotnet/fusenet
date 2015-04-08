@@ -21,11 +21,7 @@ using System.Collections.Specialized;
 //
 //-------------------------------------------------------------
 
-using Fusenet.Core;
-using Fusenet.NNTP;
-using Fusenet.Utils;
-
-namespace Fusenet.API
+namespace Fusenet
 {
     public interface Api
     {

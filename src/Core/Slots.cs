@@ -18,12 +18,7 @@ using System.Collections.Concurrent;
 //
 //-------------------------------------------------------------
 
-using Fusenet.API;
-using Fusenet.Core;
-using Fusenet.NNTP;
-using Fusenet.Utils;
-
-namespace Fusenet.Core
+namespace Fusenet
 {
     internal class Slots : VirtualItem 
     {
