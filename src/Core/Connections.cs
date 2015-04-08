@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
-using System.Threading.Tasks;
 
 //-------------------------------------------------------------
 //
@@ -17,10 +17,7 @@ using System.Threading.Tasks;
 //
 //-------------------------------------------------------------
 
-using Fusenet.NNTP;
-using Fusenet.Utils;
-
-namespace Fusenet.Core
+namespace Fusenet
 {
     internal class Connections
     {

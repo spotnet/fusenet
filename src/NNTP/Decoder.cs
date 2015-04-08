@@ -13,10 +13,7 @@ using System.Diagnostics;
 //
 //-------------------------------------------------------------
 
-using Fusenet.Core;
-using Fusenet.Utils;
-
-namespace Fusenet.NNTP
+namespace Fusenet
 {
     internal interface ArticleDecoder
     {

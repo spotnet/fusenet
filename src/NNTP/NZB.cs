@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Text;
-using System.Collections.Generic;
 using System.Xml;
+using System.Text;
 using System.Threading;
+using System.Collections.Generic;
 
 //-------------------------------------------------------------
 //
@@ -16,10 +16,7 @@ using System.Threading;
 //
 //-------------------------------------------------------------
 
-using Fusenet.Core;
-using Fusenet.Utils;
-
-namespace Fusenet.NNTP
+namespace Fusenet
 {
     static class NZB
     {

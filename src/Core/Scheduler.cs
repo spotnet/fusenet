@@ -19,10 +19,7 @@ using System.Collections.Concurrent;
 //
 //-------------------------------------------------------------
 
-using Fusenet.API;
-using Fusenet.NNTP;
-using Fusenet.Utils;
-using Fusenet.Core;
+using Fusenet;
 
 internal class Scheduler
 {
