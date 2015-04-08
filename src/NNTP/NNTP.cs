@@ -3,12 +3,12 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Net.Sockets;
-using System.Threading;
+using System.Diagnostics;
 using System.ComponentModel;
-using System.Collections.Concurrent;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Collections.Concurrent;
 
 //-------------------------------------------------------------
 //
@@ -21,10 +21,7 @@ using System.Diagnostics;
 //
 //-------------------------------------------------------------
 
-using Fusenet.Core;
-using Fusenet.Utils;
-
-namespace Fusenet.NNTP
+namespace Fusenet
 {
     internal class VirtualNNTP
     {
@@ -357,11 +354,11 @@ namespace Fusenet.NNTP
                 {
                     if (!iServer.SSL)
                     {
-                        iSocket = new Utils.Socket();
+                        iSocket = new Socket();
                     }
                     else
                     {
-                        iSocket = new Utils.SSLSocket();
+                        iSocket = new SSLSocket();
                     }
 
                     iSocket.Received += new EventHandler<WorkArgs>(iReceived);

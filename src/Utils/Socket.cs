@@ -17,10 +17,7 @@ using System.Security.Cryptography.X509Certificates;
 //
 //-------------------------------------------------------------
 
-using Fusenet.API;
-using Fusenet.Core;
-
-namespace Fusenet.Utils
+namespace Fusenet
 {
     internal interface VirtualSocket
     {

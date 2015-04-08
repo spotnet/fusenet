@@ -16,7 +16,7 @@ using System.Collections.Concurrent;
 //
 //-------------------------------------------------------------
 
-namespace Fusenet.Utils
+namespace Fusenet
 {
     internal class IndexedCollection : IndexedObject 
     {

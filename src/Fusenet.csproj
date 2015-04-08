@@ -59,6 +59,7 @@
     <Compile Include="API\API.cs" />
     <Compile Include="Utils\Collection.cs" />
     <Compile Include="NNTP\Decoder.cs" />
+    <Compile Include="Utils\Defines.cs" />
     <Compile Include="Utils\Module.cs" />
     <Compile Include="Core\Connections.cs" />
     <Compile Include="Core\Engine.cs" />
@@ -69,9 +70,7 @@
     <Compile Include="Core\Scheduler.cs" />
     <Compile Include="NNTP\Task.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

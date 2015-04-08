@@ -19,8 +19,7 @@ using System.Collections.Specialized;
 //
 //-------------------------------------------------------------
 
-using Fusenet.API;
-using Fusenet.Utils;
+using Fusenet;
 
 namespace Phuse
 {

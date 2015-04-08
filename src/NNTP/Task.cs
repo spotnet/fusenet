@@ -20,10 +20,7 @@ using System.Security.Cryptography;
 //
 //-------------------------------------------------------------
 
-using Fusenet.Core;
-using Fusenet.Utils;
-
-namespace Fusenet.NNTP
+namespace Fusenet
 {
     internal class ConnectionTask
     {
